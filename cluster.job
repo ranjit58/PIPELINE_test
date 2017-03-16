@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH --partition=short
+#SBATCH --job-name=sm.jobfile
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --share
+#SBATCH --mem=10000
+#SBATCH --time=1:00:00
+#SBATCH --output=sm.%j.out
+#SBATCH --error=sm.%j.err
+#SBATCH --mail-type=FAIL
+#SBATCH --mail-user=rkumar@uab.edu
+
+source activate python35
+snakemake --cluster "sbatch -p short --mem=6000 -N 1 -n 1 --time=01:00:00 --output=sm.%j.out --error=sm.%j.err --mail-type=FAIL --mail-user=rkumar@uab.edu " --jobs 4 --jobname "{rulename}.{jobid}"
