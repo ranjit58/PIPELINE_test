@@ -8,7 +8,7 @@ rule all:
 	input: ALL_FASTQC_ZIP + ALL_FASTQC_HTML
 
 rule fastqc:
-	input: "RAWDATA2/{sample}.fastq.gz"
+	input: "RAWDATA/{sample}.fastq.gz"
 	output: "FASTQC/{sample}_fastqc.zip", "FASTQC/{sample}_fastqc.html"
 	benchmark: "benchmark/fastqc/{sample}.bench"
 	#params:	rg="anything"
